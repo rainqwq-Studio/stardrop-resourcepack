@@ -1,0 +1,14 @@
+{
+    "music_disc.far": {
+        "replace": true,
+        "subtitle": "刘德华解冻!",
+        "sounds": [
+          "music_disc_far",
+          {
+            "name": "music_disc_far",
+            "preload": true,
+            "stream": true
+          }
+        ]
+      }
+}
