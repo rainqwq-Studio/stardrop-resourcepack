@@ -18,15 +18,15 @@ jobs:
     
       - name: Create version-less copy
         run: |
-          cp mc-resource-pack-${{ env.VERSION }}.zip mc-resource-pack-latest.zip
+          cp stardrop-resource-pack-${{ env.VERSION }}.zip stardrop-resource-pack-latest.zip
     
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            mc-resource-pack-${{ env.VERSION }}.zip
-            mc-resource-pack-latest.zip
+            stardrop-resource-pack-${{ env.VERSION }}.zip
+            stardrop-resource-pack-latest.zip
           name: Resource Pack v${{ env.VERSION }}
           draft: false
           prerelease: false
