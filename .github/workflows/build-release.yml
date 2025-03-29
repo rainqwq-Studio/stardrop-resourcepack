@@ -1,0 +1,34 @@
+name: Build and Release Resource Pack
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Zip Resource Pack with Version
+        run: |
+          zip -r stardrop-resource-pack-${{ env.VERSION }}.zip . -x "*.git*" ".github/*"
+    
+      - name: Create version-less copy
+        run: |
+          cp mc-resource-pack-${{ env.VERSION }}.zip mc-resource-pack-latest.zip
+    
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            mc-resource-pack-${{ env.VERSION }}.zip
+            mc-resource-pack-latest.zip
+          name: Resource Pack v${{ env.VERSION }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
